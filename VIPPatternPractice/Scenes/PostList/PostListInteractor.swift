@@ -14,28 +14,29 @@ import UIKit
 
 protocol PostListBusinessLogic
 {
-  func doSomething(request: PostList.Something.Request)
+    func fetchPostList(request: PostList.FetchPostList.Request)
 }
 
 protocol PostListDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
 class PostListInteractor: PostListBusinessLogic, PostListDataStore
 {
-  var presenter: PostListPresentationLogic?
-  var worker: PostListWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: PostList.Something.Request)
-  {
-    worker = PostListWorker()
-    worker?.doSomeWork()
+    var presenter: PostListPresentationLogic?
+    var worker: PostListWorker?
+    //var name: String = ""
     
-    let response = PostList.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: Do something
+    
+    // 뷰 -> 인터렉터한테 시키는 것
+    func fetchPostList(request: PostList.FetchPostList.Request) // request도 usecase를 통해 가져옴
+    {
+        worker = PostListWorker()
+        guard let postList = worker?.fetchPostList(count: request.count) else { return } // 인터렉터한테서 받아온 날것의 데이터
+        
+        let response = PostList.FetchPostList.Response(posts: postList)
+        presenter?.presentPostList(response: response)
+    }
 }

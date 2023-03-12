@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0E0542B329BCD11B00599E00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542B229BCD11B00599E00 /* AppDelegate.swift */; };
 		0E0542B529BCD11B00599E00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542B429BCD11B00599E00 /* SceneDelegate.swift */; };
-		0E0542B729BCD11B00599E00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542B629BCD11B00599E00 /* ViewController.swift */; };
 		0E0542BA29BCD11B00599E00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0542B829BCD11B00599E00 /* Main.storyboard */; };
 		0E0542BC29BCD11D00599E00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0542BB29BCD11D00599E00 /* Assets.xcassets */; };
 		0E0542BF29BCD11D00599E00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0542BD29BCD11D00599E00 /* LaunchScreen.storyboard */; };
@@ -21,13 +20,14 @@
 		0E0542D529BCD28E00599E00 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542CF29BCD28E00599E00 /* PostListViewController.swift */; };
 		0E0542D629BCD28E00599E00 /* PostListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542D029BCD28E00599E00 /* PostListInteractor.swift */; };
 		0E0542D929BCD39900599E00 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542D829BCD39900599E00 /* Post.swift */; };
+		0E0542DE29BD9F9200599E00 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0542DC29BD9F9200599E00 /* MyTableViewCell.swift */; };
+		0E0542DF29BD9F9200599E00 /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E0542DD29BD9F9200599E00 /* MyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E0542AF29BCD11B00599E00 /* VIPPatternPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIPPatternPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0542B229BCD11B00599E00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E0542B429BCD11B00599E00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0E0542B629BCD11B00599E00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E0542B929BCD11B00599E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E0542BB29BCD11D00599E00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E0542BE29BCD11D00599E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +39,8 @@
 		0E0542CF29BCD28E00599E00 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		0E0542D029BCD28E00599E00 /* PostListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListInteractor.swift; sourceTree = "<group>"; };
 		0E0542D829BCD39900599E00 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0E0542DC29BD9F9200599E00 /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		0E0542DD29BD9F9200599E00 /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +78,12 @@
 				0E0542C929BCD24C00599E00 /* Scenes */,
 				0E0542B229BCD11B00599E00 /* AppDelegate.swift */,
 				0E0542B429BCD11B00599E00 /* SceneDelegate.swift */,
-				0E0542B629BCD11B00599E00 /* ViewController.swift */,
 				0E0542B829BCD11B00599E00 /* Main.storyboard */,
 				0E0542BB29BCD11D00599E00 /* Assets.xcassets */,
 				0E0542BD29BCD11D00599E00 /* LaunchScreen.storyboard */,
 				0E0542C029BCD11D00599E00 /* Info.plist */,
+				0E0542DC29BD9F9200599E00 /* MyTableViewCell.swift */,
+				0E0542DD29BD9F9200599E00 /* MyTableViewCell.xib */,
 			);
 			path = VIPPatternPractice;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0542BF29BCD11D00599E00 /* LaunchScreen.storyboard in Resources */,
+				0E0542DF29BD9F9200599E00 /* MyTableViewCell.xib in Resources */,
 				0E0542BC29BCD11D00599E00 /* Assets.xcassets in Resources */,
 				0E0542BA29BCD11B00599E00 /* Main.storyboard in Resources */,
 			);
@@ -193,8 +197,8 @@
 			files = (
 				0E0542D529BCD28E00599E00 /* PostListViewController.swift in Sources */,
 				0E0542D129BCD28E00599E00 /* PostListPresenter.swift in Sources */,
-				0E0542B729BCD11B00599E00 /* ViewController.swift in Sources */,
 				0E0542B329BCD11B00599E00 /* AppDelegate.swift in Sources */,
+				0E0542DE29BD9F9200599E00 /* MyTableViewCell.swift in Sources */,
 				0E0542B529BCD11B00599E00 /* SceneDelegate.swift in Sources */,
 				0E0542D329BCD28E00599E00 /* PostListRouter.swift in Sources */,
 				0E0542D629BCD28E00599E00 /* PostListInteractor.swift in Sources */,

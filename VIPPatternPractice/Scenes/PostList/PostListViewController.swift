@@ -12,16 +12,25 @@
 
 import UIKit
 
-protocol PostListDisplayLogic: class
+protocol PostListDisplayLogic: AnyObject
 {
-  func displaySomething(viewModel: PostList.Something.ViewModel)
+  func displayPostList(viewModel: PostList.FetchPostList.ViewModel) // usecase 연결
 }
 
 class PostListViewController: UIViewController, PostListDisplayLogic
 {
   var interactor: PostListBusinessLogic?
   var router: (NSObjectProtocol & PostListRoutingLogic & PostListDataPassing)?
-
+    
+  // MARK: - IBOutlets
+    
+    @IBOutlet weak var myTableView: UITableView!
+    
+    typealias DisplayedPost = PostList.FetchPostList.ViewModel.DisplayedPost
+    
+    // MARK: - Properties
+    var postList: [DisplayedPost] = []
+    
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -44,6 +53,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic
     let interactor = PostListInteractor()
     let presenter = PostListPresenter()
     let router = PostListRouter()
+      
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
@@ -69,21 +79,57 @@ class PostListViewController: UIViewController, PostListDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+      
+      fetchPostList()
+      configureTableView()
   }
   
+    fileprivate func configureTableView() {
+        let myTableViewCellNib = UINib(nibName: String(describing: MyTableViewCell.self), bundle: nil)
+        
+        self.myTableView.register(myTableViewCellNib, forCellReuseIdentifier: "myTableViewCellId")
+        
+        self.myTableView.rowHeight = UITableView.automaticDimension
+        self.myTableView.estimatedRowHeight = 120
+        
+//        self.myTableView.delegate = self
+        self.myTableView.dataSource = self
+    }
+    
+    
+    
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   
-  func doSomething()
+    // 뷰 -> 인터렉터에게 시키기
+  func fetchPostList()
   {
-    let request = PostList.Something.Request()
-    interactor?.doSomething(request: request)
+    let request = PostList.FetchPostList.Request(count: 10)
+      interactor?.fetchPostList(request: request)
   }
   
-  func displaySomething(viewModel: PostList.Something.ViewModel)
+    // 프리젠터 -> 뷰로 화면을 그리는 것
+    func displayPostList(viewModel: PostList.FetchPostList.ViewModel)
   {
     //nameTextField.text = viewModel.name
+      self.postList = viewModel.displayedPosts
+      self.myTableView.reloadData()
   }
+}
+
+extension PostListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        postList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "myTableViewCellId", for: indexPath) as? MyTableViewCell else { return UITableViewCell() }
+        
+        let cellData = postList[indexPath.row]
+        cell.configureCell(post: cellData)
+        
+        return cell
+    }
 }

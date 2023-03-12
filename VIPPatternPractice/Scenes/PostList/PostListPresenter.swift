@@ -14,18 +14,25 @@ import UIKit
 
 protocol PostListPresentationLogic
 {
-  func presentSomething(response: PostList.Something.Response)
+    func presentPostList(response: PostList.FetchPostList.Response)
 }
 
 class PostListPresenter: PostListPresentationLogic
 {
-  weak var viewController: PostListDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: PostList.Something.Response)
-  {
-    let viewModel = PostList.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: PostListDisplayLogic?
+    
+    // MARK: Do something
+    
+    // 인터렉터 -> 프리젠터로 온 것
+    // 날것의 데이터를 받음
+    func presentPostList(response: PostList.FetchPostList.Response)
+    {
+        
+        typealias DisplayedPost = PostList.FetchPostList.ViewModel.DisplayedPost
+        
+        let displayedPosts = response.posts.map { DisplayedPost(post: $0) } // 날것의 데이터를 가공해서 담아
+        
+        let viewModel = PostList.FetchPostList.ViewModel(displayedPosts: displayedPosts) // 가공한 데이터를 viewmodel에 담아서
+        viewController?.displayPostList(viewModel: viewModel) // viewcontroller로 넘겨
+    }
 }
